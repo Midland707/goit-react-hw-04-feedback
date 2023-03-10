@@ -1,0 +1,19 @@
+.buttonOttions:hover {
+  background-color: rgb(83, 200, 235);
+}
+
+.buttonBlock {
+  margin: 0;
+}
+
+.buttonOptions {
+  cursor: pointer;
+  margin-right: 40px;
+  font-size: 20px;
+  border: 1px solid;
+  border-radius: 2px;
+}
+
+.buttonOptions:hover {
+  background-color: aqua;
+}
