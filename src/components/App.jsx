@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Section } from 'components/Section/Section';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from 'components/Statistics/Statistics';
@@ -8,8 +8,6 @@ export function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [positivePercentage, setPositivePercentage] = useState(0);
 
   const onLeaveFeedback = event => {
     switch (event.target.textContent) {
@@ -23,14 +21,14 @@ export function App() {
         setBad(prevBad => prevBad + 1);
         break;
       default:
-        alert(`Error! ${event.target.textContent} - not find. `);
+        alert(`Error! ${event.target.textContent} - not find.`);
     }
   };
 
-  useEffect(() => {
-    setTotal(good + neutral + bad);
-    setPositivePercentage(Number(((100 * good) / total).toFixed(0)));
-  }, [good, neutral, bad, total]);
+  const totalSet = () => good + neutral + bad;
+
+  const positivePercentageSet = () =>
+    Number(((100 * good) / totalSet()).toFixed(0));
 
   return (
     <div
@@ -53,10 +51,10 @@ export function App() {
           good={good}
           neutral={neutral}
           bad={bad}
-          total={total}
-          positivePercentage={positivePercentage}
+          total={totalSet()}
+          positivePercentage={positivePercentageSet()}
         />
-        <Notification message="There is no feedback" total={total} />
+        <Notification message="There is no feedback" total={totalSet()} />
       </Section>
     </div>
   );
